@@ -2,11 +2,13 @@ databases:
   - name: personal_blog
     databaseName: personal_blog
     user: personal_blog
+    plan: free
 
 services:
   - type: web
     name: personal_blog
     runtime: python
+    plan: free
     buildCommand: "./build.sh"
     startCommand: "gunicorn personal_blog.wsgi:application"
     envVars:
