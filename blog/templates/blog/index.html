@@ -19,7 +19,7 @@
                     </a>
                 {% endfor %}
             </small>
-            <p>{{ post.body|safe | slice:":400" }}...</p>
+            <p>{{ post.body|safe | truncatechars_html:400 }}</p>
         {% endfor %}
     {% endblock posts %}
 {% endblock page_content %}
