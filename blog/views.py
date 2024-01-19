@@ -1,5 +1,6 @@
 # blog/views.py
 
+import markdown
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from blog.models import Post, Comment
@@ -26,7 +27,9 @@ def blog_category(request, category):
 
 
 def blog_detail(request, pk):
+    md = markdown.Markdown(extensions=["fenced_code"])
     post = Post.objects.get(pk=pk)
+    post.body = md.convert(post.body)
     form = CommentForm()
     if request.method == "POST":
         form = CommentForm(request.POST)
